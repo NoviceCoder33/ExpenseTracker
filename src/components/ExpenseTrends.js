@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 const ExpenseTrends = ({ expenses }) => {
   if (!expenses || expenses.length === 0) {
@@ -21,16 +21,16 @@ const ExpenseTrends = ({ expenses }) => {
     amount: expensesByCategory[category],
   }));
 
+
   return (
-    <div>
-      <h2>Expense Trends</h2>
-      <BarChart width={400} height={300} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="category" />
-        <YAxis />
+    <div className="expense-trend-container">
+      <h2 style={{color:"#fff"}}>Expense Trends</h2>
+      <BarChart width={550} height={300} data={data} layout="vertical">
+        <XAxis type="number" />
+        <YAxis dataKey="category" type="category" width={150} />
         <Tooltip />
         <Legend />
-        <Bar dataKey="amount" fill="#8884d8" />
+        <Bar dataKey="amount" fill="#8884d8"  barSize={10}/>
       </BarChart>
     </div>
   );

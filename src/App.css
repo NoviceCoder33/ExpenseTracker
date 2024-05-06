@@ -1,38 +1,41 @@
-.App {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
   text-align: center;
+  background-color: #3B3B3B;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ 
+.app{
+  padding: 0;
+  margin: 0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.logo{
+  padding: 0;
   display: flex;
-  flex-direction: column;
+  align-self: flex-start;
+  margin-left: 3rem;
+  color: #fff;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.TopTrackerBox{
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  margin: 0 2rem 0;
+  border-radius: 0.1rem;
+  padding: 0.5rem 4rem 0.5rem;
+  background-color: #626262;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.TransactionsBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem 1rem;
 }

@@ -71,13 +71,15 @@ const RecentTransactions = ({ expenses, onDeleteExpense, onEditExpense }) => {
   };
 
   return (
+    <div>
+    <h2 style={{color:"#fff"}}>Recent Transactions</h2>
     <div className="recent-transactions-container">
-      <h2>Recent Transactions</h2>
       <ul>
         {currentTransactions && currentTransactions.map(expense => (
           <li key={expense.id}>
             {editingExpenseId === expense.id ? (
-              <div>
+              <div className="recent-transactions">
+                <div className="title-expense">
                 <input
                   type="text"
                   value={editedExpense.title}
@@ -85,25 +87,18 @@ const RecentTransactions = ({ expenses, onDeleteExpense, onEditExpense }) => {
                   placeholder="Title"
                 />
                 <input
-                  type="number"
-                  value={editedExpense.amount}
-                  onChange={(e) => handleInputChange(e, 'amount')}
-                  placeholder="Amount"
-                />
-                <select
-                  value={editedExpense.category}
-                  onChange={(e) => handleInputChange(e, 'category')}
-                >
-                  <option value="">Select category</option>
-                  {categories.map(category => (
-                    <option key={category} value={category}>{category}</option>
-                  ))}
-                </select>
-                <input
                   type="date"
                   value={editedExpense.date}
                   onChange={(e) => handleInputChange(e, 'date')}
                   placeholder="Date"
+                />
+                </div>
+                <div className="detail-expense">
+                <input
+                  type="number"
+                  value={editedExpense.amount}
+                  onChange={(e) => handleInputChange(e, 'amount')}
+                  placeholder="Amount"
                 />
                 <button onClick={handleSaveEdit}>
                     <FontAwesomeIcon icon={faCheck} />
@@ -111,15 +106,20 @@ const RecentTransactions = ({ expenses, onDeleteExpense, onEditExpense }) => {
                 <button onClick={handleCancelEdit}>
                     <FontAwesomeIcon icon={faTimes} />
                 </button>
+                </div>
+
               </div>
             ) : (
-              <div>
+              <div className="recent-transactions">
+                <div className="title-expense">
                 <span>{expense.title}</span>
-                <span>${expense.amount}</span>
-                <span>{expense.category}</span>
-                <span>{expense.date}</span>
-                <FontAwesomeIcon icon={DeleteIcon} onClick={() => onDeleteExpense(expense.id)} />
-                <FontAwesomeIcon icon={EditIcon} onClick={() => handleEdit(expense)} />
+                <span style={{color:"grey"}}>{expense.date}</span>
+                </div>
+                <div className="detail-expense">
+                <span  style={{color:"#F4BB4A"}}>${expense.amount}</span>
+                <FontAwesomeIcon style={{color:"#FF3E3E"}} icon={DeleteIcon} onClick={() => onDeleteExpense(expense.id)} />
+                <FontAwesomeIcon style={{color:"#F4BB4A"}}  icon={EditIcon} onClick={() => handleEdit(expense)} />
+                </div>
               </div>
             )}
           </li>
@@ -130,11 +130,12 @@ const RecentTransactions = ({ expenses, onDeleteExpense, onEditExpense }) => {
       <button onClick={prevPage} disabled={currentPage === 1}>
       <FontAwesomeIcon icon={faChevronLeft} />
       </button>
-      <span>  {currentPage}  </span>
+      <span style={{backgroundColor:"#43967B",borderRadius:"1rem"}}>  {currentPage}  </span>
       <button onClick={nextPage} disabled={currentTransactions.length < transactionsPerPage}>
       <FontAwesomeIcon icon={faChevronRight} />
       </button>
       </div>
+    </div>
     </div>
   );
 };

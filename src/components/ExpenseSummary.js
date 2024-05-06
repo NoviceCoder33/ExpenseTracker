@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AddExpenseForm from './AddExpenseForm';
 import { Button } from '@mui/material';
+import './ExpenseSummary.css';
 
 const ExpenseSummary = ({ expenses, addExpense, totalExpensesAmount }) => {
   const [showForm, setShowForm] = useState(false);
@@ -10,10 +11,11 @@ const ExpenseSummary = ({ expenses, addExpense, totalExpensesAmount }) => {
   };
 
   return (
-    <div>
-      <h2>Expense</h2>
-      <p>Total Expenses: ${totalExpensesAmount}</p>
-      <Button onClick={toggleForm}>+Add Expense</Button>
+    <div className="expense-container">
+      <p  style={{color:"#fff",fontWeight:"600"}}
+      >Expenses: <span className="redword"> ${totalExpensesAmount}</span>
+      </p>
+      <Button className="redbtn" onClick={toggleForm}>+add Expense</Button>
       {showForm && <AddExpenseForm addExpense={addExpense} onClose={toggleForm} />}
     </div>
   );

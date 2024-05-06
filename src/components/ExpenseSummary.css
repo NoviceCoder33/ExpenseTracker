@@ -1,0 +1,20 @@
+.expense-container{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    background-color: #9B9B9B;
+    border-radius: 0.5rem;
+    width: 50%;
+    height: 5rem;
+    padding: 2rem;
+    margin: 2rem;
+}
+.redword{
+    font-weight: 800;
+    color: #FF4747 ;
+}
+.redbtn{
+    background: linear-gradient(90deg, #FF9595 0%, #FF4747 80%, #FF3838 100%);
+    color: #fff;
+}

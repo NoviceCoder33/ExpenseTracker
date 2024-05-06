@@ -1,0 +1,22 @@
+.wallet-container{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    background-color: #9B9B9B;
+    border-radius: 0.5rem;
+    width: 50%;
+    height: 5rem;
+    padding: 2rem;
+    margin: 2rem;
+}
+
+.greenword{
+    font-weight: 800;
+    color: #89E148 ;
+}
+.greenbtn{
+    background: linear-gradient(90deg, #B5DC52 0%, #89E148 100%);
+    color: #fff;
+}
+

@@ -34,7 +34,7 @@ const ExpensePieChart = ({ expenses }) => {
   }));
 
   return (
-    <div style={{ width: '100%', height: 450 }}>
+    <div style={{ width: '100%', height: 250 }}>
       <ResponsiveContainer>
         <PieChart>
           <Pie

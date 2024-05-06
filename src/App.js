@@ -57,8 +57,8 @@ function App() {
   };
   return (
     <div className="App">
-      <h1>Expense Tracker</h1>
-      <div>
+      <h1 className="logo">Expense Tracker</h1>
+      <div className="TopTrackerBox">
         <Wallet walletBalance={walletBalance} addIncome={addIncome} />
         <ExpenseSummary
           expenses={expenses}
@@ -67,13 +67,13 @@ function App() {
         />
         <ExpensePieChart expenses={expenses} />
       </div>
-      <div>
+      <div className="TransactionsBox">
         <RecentTransactions  
           expenses={expenses}
           editExpense={editExpense}
           deleteExpense={deleteExpense}
           />
-        <ExpenseTrends/>
+        <ExpenseTrends expenses={expenses} />
       </div>
     </div>
   );

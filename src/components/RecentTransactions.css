@@ -1,6 +1,41 @@
+.recent-transactions-container{
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 0;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+
 .recent-transactions-container ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
   }
-  
+
+.recent-transactions{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 1rem;
+  border-radius: 0.1rem;
+  border-bottom: solid 1px grey;
+}  
+
+.title-expense{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}  
+
+.detail-expense{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .pagination{
+    padding: 1rem;
+  }

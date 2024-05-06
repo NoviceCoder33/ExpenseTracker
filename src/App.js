@@ -3,6 +3,8 @@ import './App.css';
 import ExpenseSummary from './components/ExpenseSummary';
 import Wallet from './components/Wallet';
 import ExpensePieChart from './components/ExpensePieChart';
+import RecentTransactions from './components/RecentTransactions';
+import ExpenseTrends from './components/ExpenseTrends';
 
 function App() {
   const [expenses, setExpenses] = useState([]);
@@ -64,6 +66,14 @@ function App() {
           totalExpensesAmount={totalExpensesAmount}
         />
         <ExpensePieChart expenses={expenses} />
+      </div>
+      <div>
+        <RecentTransactions  
+          expenses={expenses}
+          editExpense={editExpense}
+          deleteExpense={deleteExpense}
+          />
+        <ExpenseTrends/>
       </div>
     </div>
   );

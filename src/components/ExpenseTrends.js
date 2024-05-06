@@ -2,11 +2,16 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const ExpenseTrends = ({ expenses }) => {
+  if (!expenses || expenses.length === 0) {
+    return <div>No expenses data available</div>;
+  }
+
   const expensesByCategory = expenses.reduce((acc, expense) => {
+    const amount = parseFloat(expense.amount); // Convert amount to number
     if (acc[expense.category]) {
-      acc[expense.category] += expense.amount;
+      acc[expense.category] += amount;
     } else {
-      acc[expense.category] = expense.amount;
+      acc[expense.category] = amount;
     }
     return acc;
   }, {});

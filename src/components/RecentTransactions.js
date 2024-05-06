@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './RecentTransactions.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt as DeleteIcon, faEdit as EditIcon,faCheck, faTimes,faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const RecentTransactions = ({ expenses, onDeleteExpense, onEditExpense }) => {
   const [editingExpenseId, setEditingExpenseId] = useState(null);
@@ -9,6 +11,8 @@ const RecentTransactions = ({ expenses, onDeleteExpense, onEditExpense }) => {
     category: '',
     date: ''
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [transactionsPerPage] = useState(5);
 
   const categories = ['Food', 'Entertainment', 'Travel'];
 
@@ -47,29 +51,48 @@ const RecentTransactions = ({ expenses, onDeleteExpense, onEditExpense }) => {
     });
   };
 
+  const handleInputChange = (e, field) => {
+    setEditedExpense({ ...editedExpense, [field]: e.target.value });
+  };
+
+  // Logic for pagination
+  const indexOfLastTransaction = currentPage * transactionsPerPage;
+  const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
+  const currentTransactions = expenses && expenses.slice(indexOfFirstTransaction, indexOfLastTransaction);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
   return (
     <div className="recent-transactions-container">
       <h2>Recent Transactions</h2>
       <ul>
-        {expenses.map(expense => (
+        {currentTransactions && currentTransactions.map(expense => (
           <li key={expense.id}>
             {editingExpenseId === expense.id ? (
               <div>
                 <input
                   type="text"
                   value={editedExpense.title}
-                  onChange={(e) => setEditedExpense({ ...editedExpense, title: e.target.value })}
+                  onChange={(e) => handleInputChange(e, 'title')}
                   placeholder="Title"
                 />
                 <input
                   type="number"
                   value={editedExpense.amount}
-                  onChange={(e) => setEditedExpense({ ...editedExpense, amount: e.target.value })}
+                  onChange={(e) => handleInputChange(e, 'amount')}
                   placeholder="Amount"
                 />
                 <select
                   value={editedExpense.category}
-                  onChange={(e) => setEditedExpense({ ...editedExpense, category: e.target.value })}
+                  onChange={(e) => handleInputChange(e, 'category')}
                 >
                   <option value="">Select category</option>
                   {categories.map(category => (
@@ -79,11 +102,15 @@ const RecentTransactions = ({ expenses, onDeleteExpense, onEditExpense }) => {
                 <input
                   type="date"
                   value={editedExpense.date}
-                  onChange={(e) => setEditedExpense({ ...editedExpense, date: e.target.value })}
+                  onChange={(e) => handleInputChange(e, 'date')}
                   placeholder="Date"
                 />
-                <button onClick={handleSaveEdit}>Save</button>
-                <button onClick={handleCancelEdit}>Cancel</button>
+                <button onClick={handleSaveEdit}>
+                    <FontAwesomeIcon icon={faCheck} />
+                </button>
+                <button onClick={handleCancelEdit}>
+                    <FontAwesomeIcon icon={faTimes} />
+                </button>
               </div>
             ) : (
               <div>
@@ -91,13 +118,23 @@ const RecentTransactions = ({ expenses, onDeleteExpense, onEditExpense }) => {
                 <span>${expense.amount}</span>
                 <span>{expense.category}</span>
                 <span>{expense.date}</span>
-                <button onClick={() => onDeleteExpense(expense.id)}>Delete</button>
-                <button onClick={() => handleEdit(expense)}>Edit</button>
+                <FontAwesomeIcon icon={DeleteIcon} onClick={() => onDeleteExpense(expense.id)} />
+                <FontAwesomeIcon icon={EditIcon} onClick={() => handleEdit(expense)} />
               </div>
             )}
           </li>
         ))}
       </ul>
+      
+      <div className="pagination">
+      <button onClick={prevPage} disabled={currentPage === 1}>
+      <FontAwesomeIcon icon={faChevronLeft} />
+      </button>
+      <span>  {currentPage}  </span>
+      <button onClick={nextPage} disabled={currentTransactions.length < transactionsPerPage}>
+      <FontAwesomeIcon icon={faChevronRight} />
+      </button>
+      </div>
     </div>
   );
 };
